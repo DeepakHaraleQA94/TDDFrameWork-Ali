@@ -24,7 +24,7 @@ public class TestUtils extends TestBase {
 	}
 
 	public static int IMPLICIT_WAIT = 15;
-	String sData = "C:\\Users\\OM SAI AM\\Desktop\\Book1.xlsx";
+	String sData = "C:\\Users\\Ali\\Desktop\\GitHubCloningProject\\TDDFrameWork-Ali\\src\\main\\java\\com\\jala\\qa\\testdata\\Excel.xlsx";
 	String EXCEL_SHEET_PATH = "C:\\Users\\OM SAI AM\\eclipse-workspace\\Jala_ProjectsUsingHybridFramework\\src\\main\\java\\com\\jala\\qa\\testdata\\Excel.xlsx";
 
 //@DataProvider(name="testData")
@@ -37,7 +37,7 @@ public class TestUtils extends TestBase {
 	@DataProvider(name = "testData")
 
 	public Object[][] CollectDataFromExcel() throws IOException {
-		FileInputStream Findpath = new FileInputStream(EXCEL_SHEET_PATH);
+		FileInputStream Findpath = new FileInputStream(sData);
 		XSSFWorkbook action = new XSSFWorkbook(Findpath);
 		XSSFSheet sheetName = action.getSheet("Sheet2");
 		Object data[][] = new Object[sheetName.getLastRowNum()][sheetName.getRow(0).getLastCellNum()];

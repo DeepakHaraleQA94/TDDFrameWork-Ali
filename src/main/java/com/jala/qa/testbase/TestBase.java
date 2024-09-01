@@ -26,7 +26,7 @@ public class TestBase {
 	public static Logger logger;
 	public TestBase() throws IOException{
 		 prop = new Properties();
-		 file = new FileInputStream("C:\\Users\\OM SAI AM\\eclipse-workspace\\Jala_ProjectsUsingHybridFramework\\src\\main\\java\\com\\jala\\qa\\property\\config.properties");
+		 file = new FileInputStream("C:\\Users\\Ali\\Desktop\\GitHubCloningProject\\TDDFrameWork-Ali\\src\\main\\java\\com\\jala\\qa\\property\\config.properties");
 		prop.load(file);
 	} 
 	
