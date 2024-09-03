@@ -25,7 +25,7 @@ public class TestUtils extends TestBase {
 
 	public static int IMPLICIT_WAIT = 15;
 	String sData = "C:\\Users\\OM SAI AM\\Desktop\\Book1.xlsx";
-	String EXCEL_SHEET_PATH = "C:\\Users\\OM SAI AM\\eclipse-workspace\\Jala_ProjectsUsingHybridFramework\\src\\main\\java\\com\\jala\\qa\\testdata\\Excel.xlsx";
+	public static String  EXCEL_SHEET_PATH = "C:\\Users\\OM SAI AM\\eclipse-workspace\\Jala_ProjectsUsingHybridFramework\\src\\main\\java\\com\\jala\\qa\\testdata\\Excel.xlsx";
 
 //@DataProvider(name="testData")
 //	public Object[][] data() {
@@ -34,15 +34,16 @@ public class TestUtils extends TestBase {
 //	return testData;	
 //	}
 
-	@DataProvider(name = "testData")
+//	@DataProvider(name = "testData")
 
-	public Object[][] CollectDataFromExcel() throws IOException {
+	public Object[][] CollectDataFromExcel(String SheetNo) throws IOException {
 		FileInputStream Findpath = new FileInputStream(EXCEL_SHEET_PATH);
 		XSSFWorkbook action = new XSSFWorkbook(Findpath);
-		XSSFSheet sheetName = action.getSheet("Sheet2");
+		XSSFSheet sheetName = action.getSheet(SheetNo);
+		
 		Object data[][] = new Object[sheetName.getLastRowNum()][sheetName.getRow(0).getLastCellNum()];
 
-		for (int r = 0; r < sheetName.getLastRowNum(); r++) {
+		for (int r = 1; r <  sheetName.getLastRowNum(); r++) {
 
 			for (int c = 0; c < sheetName.getRow(0).getLastCellNum(); c++) {
 //			System.out.println(sheetName.getRow(r).getCell(c).toString());

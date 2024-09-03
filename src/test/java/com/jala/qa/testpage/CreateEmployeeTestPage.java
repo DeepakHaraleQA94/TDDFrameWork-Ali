@@ -20,6 +20,7 @@ public class CreateEmployeeTestPage extends TestBase {
 	CreateEmployeeDetailsPage emp ;
 	HomePage homepage;
 	TestUtils util;
+//	String SheetNum ="Sheet2";
 	public CreateEmployeeTestPage() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,7 +35,7 @@ public class CreateEmployeeTestPage extends TestBase {
 		 homepage = new HomePage();
 		 homepage.createEmployee();
 		  emp = new CreateEmployeeDetailsPage();
-		  util = new TestUtils();
+//		  util = new TestUtils();
 	}
 	
 //	@DataProvider
@@ -45,13 +46,15 @@ public class CreateEmployeeTestPage extends TestBase {
 //	return testData;	
 //	}
 	
-//	@DataProvider
-//	public Object[][] getData() throws IOException {
-//		Object data[][]= util.CollectDataFromExcel();
-//		return data;
-//	}
-//	
-	@Test(dataProvider ="testData", dataProviderClass = TestUtils.class)
+	@DataProvider
+	public Object[][] getData() throws IOException {
+		 util = new TestUtils();
+		Object data[][]= util.CollectDataFromExcel("Sheet2");
+		System.out.println(data);
+		return data;
+	}
+	
+	@Test(dataProvider ="getData")
 	public void validateEmployeeDetails(String Fname, String email) throws InterruptedException
 	{
 		

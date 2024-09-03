@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.jala.qa.pages.LoginPage;
@@ -16,6 +17,9 @@ import com.jala.qa.utility.TestUtils;
 
 public class LoginTestPage extends TestBase{
 	LoginPage login;
+	TestUtils util;
+//	String sheetNo ="ali";
+	
 	public LoginTestPage() throws IOException {
 		super();		
 	}
@@ -27,6 +31,9 @@ public class LoginTestPage extends TestBase{
 		login = new LoginPage();
 	}
 	
+	
+	
+	
 	@Test(priority = 1)
 	public void validatePageName() {
 		String expected = "JALA Academy";
@@ -37,11 +44,20 @@ public class LoginTestPage extends TestBase{
 		
 	}
 	
-//	@Test(priority = 2, dataProvider = "testData", dataProviderClass = TestUtils.class)
-	public void validateLoginCredential() throws InterruptedException {
-		 login.validateLoginCredential(prop.getProperty("Uname"), prop.getProperty("Pass"));
+	@DataProvider
+	
+	public Object[][] logidata() throws IOException {
+		util = new TestUtils();
+		Object[][] signInData = util.CollectDataFromExcel("ali");
+		
+		return signInData;
+	}
+	
+@Test (dataProvider = "logidata")
+	public void validateLoginCredential(String uname, String pass) throws InterruptedException {
+		 login.validateLoginCredential(uname, pass);
 		 holdtime();
-		String actual = driver.getTitle();
+		 String actual = driver.getTitle();
 		 Assert.assertEquals(actual, "Magnus");
 		 Reporter.log("landing successfully on home page",true);
 
